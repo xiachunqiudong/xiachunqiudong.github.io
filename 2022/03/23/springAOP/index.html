@@ -18,20 +18,21 @@
   
     <meta name="description" content="第一章静态代理设计模式1.为什么需要代理设计模式1.1问题12345678910111213- 在JavaEE分层开发中，哪一层最重要	Service	- Service层中包含的代码  1. 核心功能     1.业务运算     2.DAO调用  2. 额外功能     1.事务     2.日志     3.性能监控- Service层如何加入额外功能	代理模式  2.代理设计模式2.1概念">
 <meta property="og:type" content="article">
-<meta property="og:title" content="spring基础引言">
+<meta property="og:title" content="spring动态代理开发">
 <meta property="og:url" content="http://example.com/2022/03/23/springAOP/index.html">
 <meta property="og:site_name" content="xiadong">
 <meta property="og:description" content="第一章静态代理设计模式1.为什么需要代理设计模式1.1问题12345678910111213- 在JavaEE分层开发中，哪一层最重要	Service	- Service层中包含的代码  1. 核心功能     1.业务运算     2.DAO调用  2. 额外功能     1.事务     2.日志     3.性能监控- Service层如何加入额外功能	代理模式  2.代理设计模式2.1概念">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-23T06:46:29.000Z">
-<meta property="article:modified_time" content="2022-03-23T07:05:52.108Z">
+<meta property="article:modified_time" content="2022-03-23T12:32:36.690Z">
 <meta property="article:author" content="Xia Dong">
 <meta property="article:tag" content="spring">
 <meta property="article:tag" content="java">
+<meta property="article:tag" content="动态代理">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>spring基础引言 - xiadong</title>
+  <title>spring动态代理开发 - xiadong</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -177,7 +178,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="spring基础引言">
+            <span class="h2" id="subtitle" title="spring动态代理开发">
               
             </span>
 
@@ -236,7 +237,7 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">spring基础引言</h1>
+            <h1 style="display: none">spring动态代理开发</h1>
             
             <div class="markdown-body">
               <h2 id="第一章静态代理设计模式"><a href="#第一章静态代理设计模式" class="headerlink" title="第一章静态代理设计模式"></a>第一章静态代理设计模式</h2><h3 id="1-为什么需要代理设计模式"><a href="#1-为什么需要代理设计模式" class="headerlink" title="1.为什么需要代理设计模式"></a>1.为什么需要代理设计模式</h3><h4 id="1-1问题"><a href="#1-1问题" class="headerlink" title="1.1问题"></a>1.1问题</h4><figure class="highlight markdown"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">-</span> 在JavaEE分层开发中，哪一层最重要<br><span class="hljs-code">	Service</span><br><span class="hljs-code">	</span><br><span class="hljs-code">- Service层中包含的代码</span><br><span class="hljs-code">  1. 核心功能</span><br><span class="hljs-code">     1.业务运算</span><br><span class="hljs-code">     2.DAO调用</span><br><span class="hljs-code">  2. 额外功能</span><br><span class="hljs-code">     1.事务</span><br><span class="hljs-code">     2.日志</span><br><span class="hljs-code">     3.性能监控</span><br><span class="hljs-code">- Service层如何加入额外功能</span><br><span class="hljs-code">	代理模式</span><br></code></pre></td></tr></table></figure>
@@ -346,6 +347,8 @@
                       <a class="hover-with-bg" href="/tags/spring/">spring</a>
                     
                       <a class="hover-with-bg" href="/tags/java/">java</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">动态代理</a>
                     
                   </div>
                 
