@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>自定义协议</title>
+    <link href="/2022/03/24/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8D%8F%E8%AE%AE/"/>
+    <url>/2022/03/24/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8D%8F%E8%AE%AE/</url>
+    
+    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><h1 id="自定义协议"><a href="#自定义协议" class="headerlink" title="自定义协议"></a>自定义协议</h1><h3 id="1-协议要素"><a href="#1-协议要素" class="headerlink" title="1.协议要素"></a>1.协议要素</h3><ul><li><p>魔数</p><p>第一时间判断是否是无效数据包</p></li><li><p>版本号</p><p>可以支持协议的升级</p></li><li><p>序列化算法</p><p>json hessian jdk …</p></li><li><p>指令类型</p><p>登录 注册 单聊 …</p></li><li><p>请求序列</p><p>双工通信,提供异步能力</p></li><li><p>正文长度</p></li><li><p>消息正文</p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>ppRoom聊天</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>netty</tag>
+      
+      <tag>java</tag>
+      
+      <tag>计算机网络</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>netty进阶粘包半包问题</title>
     <link href="/2022/03/23/netty%E8%BF%9B%E9%98%B6%E7%B2%98%E5%8C%85%E5%8D%8A%E5%8C%85%E9%97%AE%E9%A2%98/"/>
     <url>/2022/03/23/netty%E8%BF%9B%E9%98%B6%E7%B2%98%E5%8C%85%E5%8D%8A%E5%8C%85%E9%97%AE%E9%A2%98/</url>
