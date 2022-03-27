@@ -16,15 +16,15 @@
   <meta name="author" content="Xia Dong">
   <meta name="keywords" content="">
   
-    <meta name="description" content="自定义协议1.协议要素 魔数 第一时间判断是否是无效数据包  版本号 可以支持协议的升级  序列化算法 json hessian jdk …  指令类型 登录 注册 单聊 …  请求序列 双工通信,提供异步能力  正文长度  消息正文">
+    <meta name="description" content="自定义协议1.协议要素 魔数 第一时间判断是否是无效数据包  版本号 可以支持协议的升级  序列化算法 json hessian jdk …  指令类型 登录 注册 单聊 …  请求序列 双工通信,提供异步能力  正文长度  消息正文   2.自定义编解码器2.1实现编码器将Message转换成ByteBuf在Channel上传输 123456789101112131415161718192021">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自定义协议">
 <meta property="og:url" content="http://example.com/2022/03/24/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8D%8F%E8%AE%AE/index.html">
 <meta property="og:site_name" content="xiadong">
-<meta property="og:description" content="自定义协议1.协议要素 魔数 第一时间判断是否是无效数据包  版本号 可以支持协议的升级  序列化算法 json hessian jdk …  指令类型 登录 注册 单聊 …  请求序列 双工通信,提供异步能力  正文长度  消息正文">
+<meta property="og:description" content="自定义协议1.协议要素 魔数 第一时间判断是否是无效数据包  版本号 可以支持协议的升级  序列化算法 json hessian jdk …  指令类型 登录 注册 单聊 …  请求序列 双工通信,提供异步能力  正文长度  消息正文   2.自定义编解码器2.1实现编码器将Message转换成ByteBuf在Channel上传输 123456789101112131415161718192021">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-24T09:08:15.000Z">
-<meta property="article:modified_time" content="2022-03-24T09:14:57.933Z">
+<meta property="article:modified_time" content="2022-03-27T03:20:17.002Z">
 <meta property="article:author" content="Xia Dong">
 <meta property="article:tag" content="netty">
 <meta property="article:tag" content="java">
@@ -199,7 +199,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      93 字
+      984 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1 分钟
+      9 分钟
     </span>
   
 
@@ -261,6 +261,11 @@
 <li><p>消息正文</p>
 </li>
 </ul>
+<h3 id="2-自定义编解码器"><a href="#2-自定义编解码器" class="headerlink" title="2.自定义编解码器"></a>2.自定义编解码器</h3><h4 id="2-1实现编码器"><a href="#2-1实现编码器" class="headerlink" title="2.1实现编码器"></a>2.1实现编码器</h4><p>将Message转换成ByteBuf在Channel上传输</p>
+<figure class="highlight java"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></div></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MessageCodec</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">ByteToMessageCodec</span>&lt;Message&gt; &#123;<br>    <span class="hljs-comment">// 编码</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">encode</span><span class="hljs-params">(ChannelHandlerContext channelHandlerContext, Message msg, ByteBuf out)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-comment">// 1. 魔数 4byte</span><br>        out.writeBytes(<span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[]&#123;<span class="hljs-number">5</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>&#125;);<br><br>        <span class="hljs-comment">// 2. 版本号 1byte</span><br>        out.writeByte(<span class="hljs-number">1</span>);<br><br>        <span class="hljs-comment">// 3. 序列化算法 1byte</span><br>        <span class="hljs-comment">// 未来 0 : &#123;jdk : 0 , json : 1 &#125;</span><br>        out.writeByte(<span class="hljs-number">0</span>);<br><br>        <span class="hljs-comment">// 4. 指令类型 1byte</span><br>        <span class="hljs-comment">/*</span><br><span class="hljs-comment">         * msg.getMessageType() 会返回当前类型对应的编号</span><br><span class="hljs-comment">         * LoginRequestMessage = 0</span><br><span class="hljs-comment">         * */</span><br>        out.writeByte(msg.getMessageType());<br><br>        <span class="hljs-comment">// 5.请求序号 4byte</span><br>        out.writeInt(msg.getSequenceId());<br>        <span class="hljs-comment">// 对齐填充 保证字节数为 1 &lt;&lt; 4</span><br>        out.writeByte(<span class="hljs-number">0xff</span>);<br><br>        <span class="hljs-comment">// 6.将对象转换字节数组</span><br>        <span class="hljs-type">ByteArrayOutputStream</span> <span class="hljs-variable">bos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ByteArrayOutputStream</span>();<br>        <span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">oos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(bos);<br>        oos.writeObject(msg);<br>        <span class="hljs-type">byte</span>[] bytes = bos.toByteArray();<br><br>        <span class="hljs-comment">// 7.内容长度</span><br>        out.writeInt(bytes.length);<br><br>        <span class="hljs-comment">// 8.写入内容</span><br>        out.writeBytes(bytes);<br>        <br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
 
             </div>
             <hr>
@@ -270,7 +275,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/ppRoom%E8%81%8A%E5%A4%A9/">ppRoom聊天</a>
+                      <a class="hover-with-bg" href="/categories/ppRoom%E8%81%8A%E5%A4%A9%E5%AE%A4/">ppRoom聊天室</a>
                     
                   </div>
                 
